@@ -32,16 +32,16 @@ char n_message_window[max_r][max_c]={
     "*                                                              *",
     "*========================== *Menu* ============================*",
     "*                                     +---------------------+  *",
-    "*      Chose one.                     |        _INFO_       |  *",
+    "*      Chose one. (q) to exit         |        _INFO_       |  *",
     "*                                     +---------------------+  *",
     "*  1.-Max Memory Ram can accepted     |                     |  *",
     "*     this PC (in Kilobytes).         |                     |  *",
     "*  2.-Memory devices.                 |                     |  *",
-    "*                                     |                     |  *",
-    "*                                     |                     |  *",
-    "*     q.-Close.                       |                     |  *",
-    "*                                     |                     |  *",
-    "*                                     +---------------------+  *",
+    "*  3.-Memory Type.                    |                     |  *",
+    "*  4.-Memory Speed.                   |                     |  *",
+    "*  5.-Manufacturer.                   |                     |  *",
+    "*  6.-Memory Capacity(in bytes).      |                     |  *",
+    "*  7.-Description.                    +---------------------+  *",
     "*                                                              *",
     "****************************************************************"
 };
@@ -167,6 +167,33 @@ void menu(){
                 //Next add.
                 get_inf("wmic memphysical get MemoryDevices");
 
+                update_inf_box();
+                break;
+
+            case '3':
+                //Next add.
+                get_inf("wmic memorychip get MemoryType");
+
+                update_inf_box();
+                break;
+
+            case '4':
+                get_inf("wmic memorychip get Speed");
+                update_inf_box();
+                break;
+
+            case '5':
+                get_inf("wmic memorychip get Manufacturer");
+                update_inf_box();
+                break;
+
+            case '6':
+                get_inf("wmic memorychip get Capacity");
+                update_inf_box();
+                break;
+
+            case '7':
+                get_inf("wmic memorychip get Description");
                 update_inf_box();
                 break;
 
