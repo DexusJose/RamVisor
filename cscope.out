@@ -1,0 +1,383 @@
+cscope 15 /d/Proyectos/C/RamVisor               0000001929
+	@D:\Proyectos\C\RamVisor\main.c
+
+10 
+	~<¡dio.h
+>
+
+11 
+	~<¡dlib.h
+>
+
+12 
+	~<SŒšg.h
+>
+
+14 
+	#Œue
+ 1
+
+	)
+
+15 
+	#çl£
+ 0
+
+	)
+
+16 
+	#max_r
+ 20
+
+	)
+
+17 
+	#max_c
+ 63
+
+	)
+
+21 
+	gn_mes§ge_wšdow
+[
+max_r
+][
+max_c
+]={
+
+44 
+	gcommªd
+[50]="wmic memphysical get MaxCapacity";
+
+47 
+	g‹xt
+[1024];
+
+49 
+	gšf
+[] = "MaxCapacity";
+
+53 
+	gmode
+[] = "r";
+
+55 
+	gdeb
+ = 
+çl£
+;
+
+58 
+	gcouÁ”
+ = 0;
+
+59 
+	gcouÁ_a
+ = 0;
+
+62 
+FILE
+ *
+	gå
+;
+
+63 
+	gmsg_‹xt
+[1024];
+
+66 
+	$maš
+()
+
+68 
+	`sy¡em
+("cls");
+
+69 
+	`show_wšdow
+();
+
+79 
+	}
+}
+
+83 
+	$show_wšdow
+(){
+
+84 
+r
+ = 0 ;„ <ð
+max_r
+; ++r){
+
+85 
+c
+ = 0 ; c <ð
+max_c
+ ; ++c){
+
+86 
+	`´štf
+("%c",
+n_mes§ge_wšdow
+[
+r
+][
+c
+]);
+
+88 
+	`´štf
+("\n");
+
+91 
+	}
+}
+
+93 
+	$m’u
+(){
+
+94 
+x
+ = 1;
+
+95 
+Ý_m’u
+[]="x";
+
+98 
+	`´štf
+("Enter‡n option: ");
+
+99 
+	`g‘s
+(
+Ý_m’u
+);
+
+100 
+Ý_m’u
+[0]){
+
+102 
+	`´štf
+("Exit fromhe‡pp...");
+
+103 
+x
+ = 0;
+
+106 
+	`´štf
+("Surprise mother fucker!");
+
+112 }
+x
+);
+
+113 
+	}
+}
+
+114 
+	$ex™_­p
+(*
+¦
+){
+
+115 
+x
+ = 1;
+
+118  
+x
+;
+
+119 
+	}
+}
+
+122 
+	$g‘_šf
+()
+
+124 if(
+deb
+ == 1){
+
+125 
+	`´štf
+("into 'get_command'\n");
+
+126 
+	`puts
+("Openhe fileo savehe string");
+
+129 
+å
+ = 
+	`pÝ’
+(
+commªd
+,
+mode
+);
+
+130 if(
+å
+ =ð
+NULL
+)
+
+133 
+	`´štf
+("Error„un command!");
+
+134 
+	`ex™
+(1);
+
+138 
+	`fg‘s
+(
+msg_‹xt
+,(msg_‹xt),
+å
+è!ð
+NULL
+ ){
+
+142 if(
+deb
+ =ð
+Œue
+){
+
+145 
+	`´štf
+("\nPršˆthsizoàËngth: %d",
+	`¡¾’
+(
+‹xt
+));
+
+146 
+	`´štf
+("\nEnd While\n");
+
+150 
+couÁ”
+++;
+
+151 
+	`no_¥aû
+(
+msg_‹xt
+,
+‹xt
+);
+
+153 
+	`´štf
+("%d\n",
+	`¡¾’
+(
+‹xt
+));
+
+154 
+	`´štf
+("%d\n",
+	`¡rcmp
+(
+šf
+,
+‹xt
+));
+
+158 
+	`pþo£
+(
+å
+);
+
+159 
+	}
+}
+
+161 
+	$no_¥aû
+(*
+s
+, *
+ns
+){
+
+162 
+i
+,
+j
+ = 0;
+
+163 *
+s
+ != '\n' | '\0'){
+
+164 if(*
+s
+ != ' '){
+
+165 *
+ns
+ = *
+s
+;
+
+166 
+ns
+++;
+
+168 
+s
+++;
+
+170 
+	}
+}
+
+173 
+	$memÜy
+()
+
+175 if(
+deb
+ == 1){
+
+176 
+	`´štf
+("into 'memory'\n");
+
+178 
+	`´štf
+("\n*** Memory ***\n");
+
+179 
+	`sy¡em
+(
+commªd
+);
+
+180 
+	}
+}
+
+	@
+1
+.
+1
+/usr/include
+1
+31
+D:\Proyectos\C\RamVisor\main.c
