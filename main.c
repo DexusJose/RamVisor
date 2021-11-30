@@ -106,9 +106,8 @@ void update_inf_box(){
 //This function show the GUI app.
 void show_window(){
 
-
     for(int r = 0 ; r < max_r; r++){
-        for(int c = 0 ; c <= max_c ; c++){
+        for(int c = 0 ; c < max_c ; c++){
             //print the window with all info
             printf("%c",n_message_window[r][c]);
         }
