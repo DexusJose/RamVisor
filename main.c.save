@@ -36,12 +36,12 @@ char n_message_window[max_r][max_c]={
     "*                                     +---------------------+  *",
     "*  1.-Max Memory Ram can accepted     |                     |  *",
     "*     this PC (in Kilobytes).         |                     |  *",
-    "*  2.-[---------------].              |                     |  *",
+    "*  2.-Memory devices.                 |                     |  *",
     "*                                     |                     |  *",
     "*                                     |                     |  *",
-    "*     q.-Close.                       |                     |  *",
-    "*                                     |                     |  *",
-    "*                                     +---------------------+  *",
+    "*     q.-Close.     ▒▒▒▒▒▒▒▒▒▒        |                     |  *",
+    "*                   ▒▓▒▓▒▒▓▒▓▒        |                     |  *",
+    "*                           +---------------------+  *",
     "*                                                              *",
     "****************************************************************"
 };
@@ -107,7 +107,7 @@ void update_inf_box(){
 void show_window(){
 
     for(int r = 0 ; r < max_r; r++){
-        for(int c = 0 ; c <= max_c ; c++){
+        for(int c = 0 ; c < max_c ; c++){
             //print the window with all info
             printf("%c",n_message_window[r][c]);
         }
@@ -121,6 +121,14 @@ void show_window(){
 
 }
 
+void clean_info_box(){
+    for(int r = 0 ; r < s_rows ; r++ ){
+        for(int c = 0; c < s_cols ; c ++){
+            inf_box[r][c] = ' ';
+        }
+    }
+}
+
 // * The menu app *
 void menu(){
     int x = 1;
@@ -128,11 +136,10 @@ void menu(){
     char op_menu[]="x";
 
     do{
-        if(deb == false){
-            system("cls");
-        }
 
         show_window();  //show the array GUI
+
+        clean_info_box();
 
         printf("Enter an option: ");
 
@@ -151,41 +158,51 @@ void menu(){
             //Choice '1' to get the maximum memory
             case '1':
                 // get the info to show
-                get_inf();
+                get_inf("wmic memphysical get MaxCapacity");
                 // update the box info
                 update_inf_box();
                 break;
 
-            case 'i':   //for debug only
-                
-                for(int k = 0 ; k < s_rows ; k++ ){
-                    for(int l = 0 ; l < s_cols ; l++ ){
-                        
-                        printf(" %0*x",2,inf_box[k][l]);   //print the info_box
+            case '2':
+                //Next add.
+                get_inf("wmic memphysical get MemoryDevices");
 
-                        }
-                    printf(" :l%0*d\n",2,k); //print the line number
-
-                }
-
+                update_inf_box();
                 break;
 
-            case '3':
-                //Next add.
+            case 'i':   //for debug only
+
+                if(deb == true){
+                    system("cls");
+
+                    for(int k = 0 ; k < s_rows ; k++ ){
+                        for(int l = 0 ; l < s_cols ; l++ ){
+
+                            printf(" %0*x",2,inf_box[k][l]);   //print the info_box
+
+                            }
+                        printf(" :l%0*d\n",2,k); //print the line number
+
+                    }
+                }
+
                 break;
 
             //Choice to do nothing
             default:
                 break;
         }
+        if(deb != true){
+            system("cls");
+        }
 
     }while(x);
 }
 
 //prototype
-void get_inf()
+void get_inf(char *cmd)
 {
-    char command[50] = "wmic memphysical get MaxCapacity";
+    //char command[50] = "wmic memphysical get MaxCapacity";
 
     //Only for debug
     if(deb == 1){
@@ -193,7 +210,7 @@ void get_inf()
         puts("Open the file to save the string");
     }
 
-    fp = popen(command,mode);   //open the file to receive the strings
+    fp = popen(cmd,mode);   //open the file to receive the strings
     if(fp == NULL)  //if pointer is equals to NULL
     {
         //Do
@@ -203,7 +220,7 @@ void get_inf()
     counter = 0;
 
     while(fgets(msg_text,sizeof(msg_text),fp) != NULL ){
-        
+
         //if only for development
         if(deb == true){
 
@@ -213,12 +230,12 @@ void get_inf()
         }
 
         no_space(msg_text,text);    //Call for the function to separate the " "
-        
+
         //insert to box info
         for(int i = 0 ; i < strlen(text) ; i++){
 
             inf_box[counter][i] = text[i];
-            
+
         }
 
         counter++;

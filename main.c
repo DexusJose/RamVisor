@@ -36,7 +36,7 @@ char n_message_window[max_r][max_c]={
     "*                                     +---------------------+  *",
     "*  1.-Max Memory Ram can accepted     |                     |  *",
     "*     this PC (in Kilobytes).         |                     |  *",
-    "*  2.-[---------------].              |                     |  *",
+    "*  2.-Memory devices.                 |                     |  *",
     "*                                     |                     |  *",
     "*                                     |                     |  *",
     "*     q.-Close.                       |                     |  *",
@@ -121,6 +121,14 @@ void show_window(){
 
 }
 
+void clean_info_box(){
+    for(int r = 0 ; r < s_rows ; r++ ){
+        for(int c = 0; c < s_cols ; c ++){
+            inf_box[r][c] = ' ';
+        }
+    }
+}
+
 // * The menu app *
 void menu(){
     int x = 1;
@@ -130,6 +138,8 @@ void menu(){
     do{
 
         show_window();  //show the array GUI
+
+        clean_info_box();
 
         printf("Enter an option: ");
 
@@ -148,8 +158,15 @@ void menu(){
             //Choice '1' to get the maximum memory
             case '1':
                 // get the info to show
-                get_inf();
+                get_inf("wmic memphysical get MaxCapacity");
                 // update the box info
+                update_inf_box();
+                break;
+
+            case '2':
+                //Next add.
+                get_inf("wmic memphysical get MemoryDevices");
+
                 update_inf_box();
                 break;
 
@@ -171,10 +188,6 @@ void menu(){
 
                 break;
 
-            case '3':
-                //Next add.
-                break;
-
             //Choice to do nothing
             default:
                 break;
@@ -187,9 +200,9 @@ void menu(){
 }
 
 //prototype
-void get_inf()
+void get_inf(char *cmd)
 {
-    char command[50] = "wmic memphysical get MaxCapacity";
+    //char command[50] = "wmic memphysical get MaxCapacity";
 
     //Only for debug
     if(deb == 1){
@@ -197,7 +210,7 @@ void get_inf()
         puts("Open the file to save the string");
     }
 
-    fp = popen(command,mode);   //open the file to receive the strings
+    fp = popen(cmd,mode);   //open the file to receive the strings
     if(fp == NULL)  //if pointer is equals to NULL
     {
         //Do
