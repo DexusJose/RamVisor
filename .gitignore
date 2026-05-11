@@ -1,0 +1,41 @@
+# ============================
+#   Code::Blocks / C / C++
+# ============================
+
+# Compiled object files
+*.o
+*.obj
+
+# Compiled binary files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Code::Blocks project junk
+*.depend
+*.layout
+*.cbTemp
+
+# Build folders
+bin/
+obj/
+
+# Backup files
+*~
+*.bak
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Windows junk
+Thumbs.db
+Desktop.ini
+
+# OneDrive conflict files
+*.lnk
+*.sync
