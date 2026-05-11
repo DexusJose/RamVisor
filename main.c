@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <windows.h>
 
 // Definitions
 #define true 1
@@ -20,10 +20,13 @@
 #define s_rows 6
 #define s_cols 20
 
+//Prototypes
+const char *is_removable(int ff);
+
 //Global variables.
 char n_message_window[max_r][max_c]={
     "****************************************************************",
-    "*                      RamVisor. v.01.0b                       *",
+    "*                      RamVisor. v.01.3b                       *",
     "****************************************************************",
     "*        Author: Eng. Jose Ramon Perez Miranda.                *",
     "*        About: This program pretends tho show info about      *",
@@ -76,8 +79,7 @@ FILE *fp;
 char msg_text[1024];
 
 //Main
-int main()
-{
+int main(){
 
     //Show the menu app
     menu();
@@ -103,7 +105,7 @@ void update_inf_box(){
     }
 }
 
-//This function show the GUI app.
+//This function show the GUI ASCII app.
 void show_window(){
 
     for(int r = 0 ; r < max_r; r++){
@@ -172,7 +174,13 @@ void menu(){
 
             case '3':
                 //Next add.
-                get_inf("wmic memorychip get MemoryType");
+                get_inf("wmic memorychip get FormFactor");
+
+                int ff = atoi(inf_box[1]);
+                const char *legend = is_removable(ff);
+
+                memset(inf_box[2],' ',s_cols);
+                memcpy(inf_box[2],legend, strlen(legend));
 
                 update_inf_box();
                 break;
@@ -256,8 +264,8 @@ void get_inf(char *cmd)
 
         }
 
-        memset(text, 0, sizeof(text));
-        no_space(msg_text,text);    //Call for the function to separate the " "
+        memset(text, 0, sizeof(text)); // function to clean buffer
+        no_space(msg_text,text,sizeof(text));    //Call for the function to separate the " "
 
         //insert to box info
         for(int i = 0 ; i < strlen(text) ; i++){
@@ -272,20 +280,32 @@ void get_inf(char *cmd)
     pclose(fp);
 }
 
-void no_space(char *s, char *ns){   // *s to msg_text, and *ns to text
+void no_space(const char *s, char *ns, size_t ns_size)
+{
+    size_t i = 0;
 
-    while(*s != '\n'){
-        if((*s != ' ') ){
+    while (*s && *s != '\n' && i < ns_size - 1) {
 
-            *ns = *s;   //ad the char of the string(s) to new string(ns)
-
-            if(*ns == 13)*ns = 0;   //if to eliminated any endline
-
-            ns++;   //increment the pinter of new string(ns)
-
+        if (*s != ' ' && *s != '\r') {
+            ns[i++] = *s;
         }
-        s++;
 
+        s++;
     }
 
+    ns[i] = '\0';   // safe end
+}
+
+const char *is_removable(int ff) {
+    switch(ff) {
+        case 7:
+        case 8:
+        case 11:
+        case 12:
+        case 13:
+        case 24:
+            return "Is Removable :D";
+        default:
+            return "Not removable :'(";
+    }
 }
