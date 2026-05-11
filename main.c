@@ -9,7 +9,7 @@
 //Librarys
 #include <stdio.h>
 #include <stdlib.h>
-#include <String.h>
+#include <string.h>
 
 
 // Definitions
@@ -143,7 +143,7 @@ void menu(){
 
         printf("Enter an option: ");
 
-        gets(op_menu);  //Wait the option
+        fgets(op_menu, sizeof(op_menu), stdin);  //Wait the option
 
         //Menu choice
         switch(op_menu[0]){
@@ -256,6 +256,7 @@ void get_inf(char *cmd)
 
         }
 
+        memset(text, 0, sizeof(text));
         no_space(msg_text,text);    //Call for the function to separate the " "
 
         //insert to box info

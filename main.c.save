@@ -9,7 +9,7 @@
 //Librarys
 #include <stdio.h>
 #include <stdlib.h>
-#include <String.h>
+#include <string.h>
 
 
 // Definitions
@@ -32,7 +32,7 @@ char n_message_window[max_r][max_c]={
     "*                                                              *",
     "*========================== *Menu* ============================*",
     "*                                     +---------------------+  *",
-    "*      Chose one.                     |        _INFO_       |  *",
+    "*      Chose one. (q) to exit         |        _INFO_       |  *",
     "*                                     +---------------------+  *",
     "*  1.-Max Memory Ram can accepted     |                     |  *",
     "*     this PC (in Kilobytes).         |                     |  *",
@@ -40,8 +40,8 @@ char n_message_window[max_r][max_c]={
     "*  3.-Memory Type.                    |                     |  *",
     "*  4.-Memory Speed.                   |                     |  *",
     "*  5.-Manufacturer.                   |                     |  *",
-    "*  6.-Capacity                   |                     |  *",
-    "*                                     +---------------------+  *",
+    "*  6.-Memory Capacity(in bytes).      |                     |  *",
+    "*  7.-Description.                    +---------------------+  *",
     "*                                                              *",
     "****************************************************************"
 };
@@ -143,7 +143,7 @@ void menu(){
 
         printf("Enter an option: ");
 
-        gets(op_menu);  //Wait the option
+        fgets(op_menu, sizeof(op_menu), stdin);  //Wait the option
 
         //Menu choice
         switch(op_menu[0]){
@@ -255,7 +255,8 @@ void get_inf(char *cmd)
             printf("\nEnd While\n");
 
         }
-
+        
+        memset(text,)
         no_space(msg_text,text);    //Call for the function to separate the " "
 
         //insert to box info
